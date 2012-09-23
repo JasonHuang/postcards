@@ -8,13 +8,14 @@
 
 #import "CardsViewController.h"
 #import "FilterViewController.h"
+#import "HersImagePickerController.h"
+
 
 @interface CardsViewController ()
 
 @end
 
 @implementation CardsViewController
-@synthesize picker = _picker;
 - (void)loadView
 {
     [super loadView];
@@ -39,20 +40,25 @@
 #pragma  mark - private selectors
 - (void)startCamera:(UIButton *) sender
 {
-    [self setPicker: [[UIImagePickerController alloc] init]];
-    [self picker].sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    [self picker].delegate = self;
-    [self presentModalViewController:[self picker] animated:YES];
+    HersImagePickerController *imagePicker = [[HersImagePickerController alloc]init];
+    [imagePicker setHersImagePickerDelegate:self];
+    [imagePicker show];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+- (void) toEditImage:(UIImage *)image
 {
-    UIImage* image = [info objectForKey: @"UIImagePickerControllerOriginalImage"];
-
     FilterViewController *filterController = [[FilterViewController alloc]init];
     [filterController setImage:image];
-    
     [self.navigationController pushViewController:filterController animated:YES];
+}
+
+#pragma mark - HersImagePickerDelegate
+- (void)hersImagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+{
+
+    [self dismissModalViewControllerAnimated:YES];
+    [self toEditImage:image];
+//    [self performSelector:@selector(toEditImage:) withObject:image afterDelay:1.0];
 }
 
 

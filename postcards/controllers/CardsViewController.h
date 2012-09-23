@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HersImagePickerController.h"
 
-@interface CardsViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface CardsViewController : UIViewController <HerImagePickerDelegate>
 
-@property (nonatomic,retain) UIImagePickerController *picker;
 
 
 @end

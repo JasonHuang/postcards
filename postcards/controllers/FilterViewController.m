@@ -16,8 +16,9 @@
 
 - (void)loadView
 {
+    [super loadView];
     UIImageView *view = [[UIImageView alloc]initWithImage:[self image]];
-    view.frame = CGRectMake(0, 0, [self image].size.width, [self image].size.height);
+    view.frame = [[UIScreen mainScreen]applicationFrame];
     [self.view addSubview:view];
 }
 
