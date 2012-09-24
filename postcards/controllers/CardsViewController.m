@@ -42,6 +42,7 @@
 {
     HersImagePickerController *imagePicker = [[HersImagePickerController alloc]init];
     [imagePicker setHersImagePickerDelegate:self];
+    [imagePicker setAllowsEditing:NO];
     [imagePicker show];
 }
 

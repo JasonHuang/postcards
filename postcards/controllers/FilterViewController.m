@@ -8,6 +8,8 @@
 
 #import "FilterViewController.h"
 
+#define FILTER_HEIGHT 60
+
 @interface FilterViewController ()
 
 @end
@@ -17,9 +19,21 @@
 - (void)loadView
 {
     [super loadView];
+    
+    CGRect frame = [[UIScreen mainScreen]applicationFrame];
+    UIScrollView *scroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height - 44 - FILTER_HEIGHT)];
+    [self.view addSubview: scroll];
+    
     UIImageView *view = [[UIImageView alloc]initWithImage:[self image]];
-    view.frame = [[UIScreen mainScreen]applicationFrame];
-    [self.view addSubview:view];
+    float imageWidth = 320;
+    float imageHeight = ([self image].size.height / [self image].size.width) * imageWidth;
+    view.frame = CGRectMake(0, 0, imageWidth, imageHeight);
+    [scroll setContentSize:CGSizeMake(imageWidth, imageHeight)];
+    [scroll addSubview:view];
+    
+    UIScrollView *horizonal = [[UIScrollView alloc] initWithFrame:CGRectMake(0, scroll.frame.size.height, frame.size.width, FILTER_HEIGHT)];
+    [horizonal setBackgroundColor:[UIColor redColor]];
+    [self.view addSubview:horizonal];
 }
 
 - (void)viewDidLoad
