@@ -81,7 +81,7 @@
         imageView.layer.cornerRadius=5;
         [staticPicture addTarget:filter];
         [filter addTarget:imageView];
-        [staticPicture processImage];
+        [staticPicture processImage]; 
         
 //        [btn setBackgroundImage:strechableButtonImage forState:UIControlStateNormal];
 //        [btn.layer setMasksToBounds:YES];
