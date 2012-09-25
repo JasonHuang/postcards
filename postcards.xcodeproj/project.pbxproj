@@ -11,6 +11,12 @@
 		306E2F64160F4A75008F93EC /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 306E2F5E160F4A75008F93EC /* FilterViewController.m */; };
 		306E2F65160F4A75008F93EC /* HersImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 306E2F62160F4A75008F93EC /* HersImagePickerController.m */; };
 		306E2F71160F4C54008F93EC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306E2F70160F4C54008F93EC /* MobileCoreServices.framework */; };
+		30D9153916116D28007BE08F /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D9153616116D1F007BE08F /* libGPUImage.a */; };
+		30D9153B16116EB6007BE08F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D9153A16116EB6007BE08F /* OpenGLES.framework */; };
+		30D9153D16116EBE007BE08F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D9153C16116EBE007BE08F /* QuartzCore.framework */; };
+		30D9153F16116ECD007BE08F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D9153E16116ECD007BE08F /* CoreMedia.framework */; };
+		30D9154116116ED8007BE08F /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D9154016116ED8007BE08F /* CoreVideo.framework */; };
+		30D9154316116EE0007BE08F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D9154216116EE0007BE08F /* AVFoundation.framework */; };
 		30FDEBEB160C61D9001F1C12 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30FDEBEA160C61D9001F1C12 /* UIKit.framework */; };
 		30FDEBED160C61D9001F1C12 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30FDEBEC160C61D9001F1C12 /* Foundation.framework */; };
 		30FDEBEF160C61D9001F1C12 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30FDEBEE160C61D9001F1C12 /* CoreGraphics.framework */; };
@@ -22,6 +28,23 @@
 		30FDEC01160C61D9001F1C12 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FDEC00160C61D9001F1C12 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		30D9153516116D1F007BE08F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30D9152C16116D1F007BE08F /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCF1A33414DDB1EC00852800;
+			remoteInfo = GPUImage;
+		};
+		30D9153716116D1F007BE08F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30D9152C16116D1F007BE08F /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BCF1A34414DDB1EC00852800;
+			remoteInfo = GPUImageTests;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		306E2F5B160F4A75008F93EC /* CardsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardsViewController.h; sourceTree = "<group>"; };
 		306E2F5C160F4A75008F93EC /* CardsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardsViewController.m; sourceTree = "<group>"; };
@@ -30,6 +53,12 @@
 		306E2F61160F4A75008F93EC /* HersImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HersImagePickerController.h; sourceTree = "<group>"; };
 		306E2F62160F4A75008F93EC /* HersImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HersImagePickerController.m; sourceTree = "<group>"; };
 		306E2F70160F4C54008F93EC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		30D9152C16116D1F007BE08F /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = postcards/ext/GPUImage/GPUImage.xcodeproj; sourceTree = "<group>"; };
+		30D9153A16116EB6007BE08F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		30D9153C16116EBE007BE08F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		30D9153E16116ECD007BE08F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		30D9154016116ED8007BE08F /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		30D9154216116EE0007BE08F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		30FDEBE6160C61D9001F1C12 /* postcards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = postcards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FDEBEA160C61D9001F1C12 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		30FDEBEC160C61D9001F1C12 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -50,6 +79,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30D9154316116EE0007BE08F /* AVFoundation.framework in Frameworks */,
+				30D9154116116ED8007BE08F /* CoreVideo.framework in Frameworks */,
+				30D9153F16116ECD007BE08F /* CoreMedia.framework in Frameworks */,
+				30D9153D16116EBE007BE08F /* QuartzCore.framework in Frameworks */,
+				30D9153B16116EB6007BE08F /* OpenGLES.framework in Frameworks */,
+				30D9153916116D28007BE08F /* libGPUImage.a in Frameworks */,
 				306E2F71160F4C54008F93EC /* MobileCoreServices.framework in Frameworks */,
 				30FDEBEB160C61D9001F1C12 /* UIKit.framework in Frameworks */,
 				30FDEBED160C61D9001F1C12 /* Foundation.framework in Frameworks */,
@@ -88,6 +123,15 @@
 			path = imagepicker;
 			sourceTree = "<group>";
 		};
+		30D9152D16116D1F007BE08F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				30D9153616116D1F007BE08F /* libGPUImage.a */,
+				30D9153816116D1F007BE08F /* GPUImageTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		30FDEBDB160C61D9001F1C12 = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +152,12 @@
 		30FDEBE9160C61D9001F1C12 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				30D9152C16116D1F007BE08F /* GPUImage.xcodeproj */,
+				30D9154216116EE0007BE08F /* AVFoundation.framework */,
+				30D9154016116ED8007BE08F /* CoreVideo.framework */,
+				30D9153E16116ECD007BE08F /* CoreMedia.framework */,
+				30D9153C16116EBE007BE08F /* QuartzCore.framework */,
+				30D9153A16116EB6007BE08F /* OpenGLES.framework */,
 				306E2F70160F4C54008F93EC /* MobileCoreServices.framework */,
 				30FDEBEA160C61D9001F1C12 /* UIKit.framework */,
 				30FDEBEC160C61D9001F1C12 /* Foundation.framework */,
@@ -181,12 +231,35 @@
 			mainGroup = 30FDEBDB160C61D9001F1C12;
 			productRefGroup = 30FDEBE7160C61D9001F1C12 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 30D9152D16116D1F007BE08F /* Products */;
+					ProjectRef = 30D9152C16116D1F007BE08F /* GPUImage.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				30FDEBE5160C61D9001F1C12 /* postcards */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		30D9153616116D1F007BE08F /* libGPUImage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGPUImage.a;
+			remoteRef = 30D9153516116D1F007BE08F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		30D9153816116D1F007BE08F /* GPUImageTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = GPUImageTests.octest;
+			remoteRef = 30D9153716116D1F007BE08F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		30FDEBE4160C61D9001F1C12 /* Resources */ = {
@@ -283,6 +356,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "postcards/postcards-Prefix.pch";
+				HEADER_SEARCH_PATHS = "./postcards/ext/GPUImage/**";
 				INFOPLIST_FILE = "postcards/postcards-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -295,6 +369,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "postcards/postcards-Prefix.pch";
+				HEADER_SEARCH_PATHS = "./postcards/ext/GPUImage/**";
 				INFOPLIST_FILE = "postcards/postcards-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
