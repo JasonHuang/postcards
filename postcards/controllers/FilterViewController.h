@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GPUImage.h"
 
 
 @interface FilterViewController : UIViewController
+{
+    GPUImageOutput<GPUImageInput> *filter;
+}
 
 @property (nonatomic,retain) UIImage *image;
 
