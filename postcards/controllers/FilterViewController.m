@@ -12,6 +12,7 @@
 #import "GPUImageSepiaFilter.h"
 #import "GrayscaleContrastFilter.h"
 #import "UIImage+Resize.h"
+#import "SmoothLineView.h"
 
 #define FILTER_HEIGHT 60
 
@@ -28,8 +29,8 @@
     [super loadView];
     
     CGRect frame = [[UIScreen mainScreen]applicationFrame];
-    UIScrollView *scroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height - 44 - FILTER_HEIGHT)];
-    [self.view addSubview: scroll];
+    verticalScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height - 44 - FILTER_HEIGHT)];
+    [self.view addSubview: verticalScroll];
     
     staticp = [[GPUImagePicture alloc] initWithImage:[self image] smoothlyScaleOutput:YES];
     float imageWidth = 320;
@@ -40,13 +41,26 @@
     [filter addTarget:[self gpuImageView]];
     [staticp processImage];
     
-    [scroll setContentSize:CGSizeMake(imageWidth, imageHeight > (frame.size.height - 44) ? imageHeight : frame.size.height - 44)];
-    [scroll addSubview:[self gpuImageView]];
+    [verticalScroll setContentSize:CGSizeMake(imageWidth, imageHeight > (frame.size.height - 44) ? imageHeight : frame.size.height - 44)];
+    [verticalScroll addSubview:[self gpuImageView]];
     
-    UIScrollView *horizonal = [[UIScrollView alloc] initWithFrame:CGRectMake(0, scroll.frame.size.height, frame.size.width, FILTER_HEIGHT)];
+    smoothView = [[SmoothLineView alloc]initWithFrame:CGRectMake(0, 0, [self gpuImageView].frame.size.width, [self gpuImageView].frame.size.height)];
+    smoothView.backgroundColor = [UIColor clearColor];
+    [smoothView setHidden:YES];
+    [[self gpuImageView]addSubview:smoothView];
+    
+    UIScrollView *horizonal = [[UIScrollView alloc] initWithFrame:CGRectMake(0, verticalScroll.frame.size.height, frame.size.width, FILTER_HEIGHT)];
     horizonal.backgroundColor = [UIColor grayColor];
     
+    paintButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [paintButton setFrame:CGRectMake(0, 0, 40, 40)];
+    [paintButton setTitle:@"画画" forState:UIControlStateNormal];
+    [paintButton addTarget:self action:@selector(prepareToDraw:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self renderFilters:horizonal];
+    
+    [horizonal addSubview:paintButton];
+
     
     [self.view addSubview:horizonal];
 }
@@ -66,15 +80,6 @@
 #pragma mark - private selectors
 - (void)renderFilters:(UIScrollView *) parentView
 {
-//    GPUImageView *primaryView = [[GPUImageView alloc] initWithFrame:CGRectMake(5, 10, 40, 40)];
-//    GPUImagePicture *sourcePicture = [[GPUImagePicture alloc] initWithImage:[self image] smoothlyScaleOutput:YES];
-//    GPUImageSepiaFilter *sepiaFilter = [[GPUImageSepiaFilter alloc] init];
-//    [sepiaFilter forceProcessingAtSize:primaryView.sizeInPixels]; // This is now needed to make the filter run at the smaller output size
-//    [sourcePicture addTarget:sepiaFilter];
-//    [sepiaFilter addTarget:primaryView];
-//        
-//    [sourcePicture processImage];
-//    [parentView addSubview:primaryView];、
     for (int i=0; i<10; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *strechableButtonImage = [[self image] resizedImage:CGSizeMake(40, 40) interpolationQuality:1.0];
@@ -88,9 +93,6 @@
         [filter addTarget:imageView];
         [staticPicture processImage]; 
         
-//        [btn setBackgroundImage:strechableButtonImage forState:UIControlStateNormal];
-//        [btn.layer setMasksToBounds:YES];
-//        btn.layer.cornerRadius=5;
         btn.backgroundColor = [UIColor clearColor];
         btn.tag = 100+i;
         [btn addTarget:self action:@selector(renderImage:) forControlEvents:UIControlEventTouchUpInside];
@@ -143,6 +145,19 @@
     [staticp addTarget:filter];
     [filter addTarget:[self gpuImageView]];
     [staticp processImage];
+}
+
+- (void)prepareToDraw:(UIButton *)sender
+{
+    if (smoothView.hidden == YES) {
+        verticalScroll.scrollEnabled = NO;
+        smoothView.hidden = NO;
+        [paintButton setTitle:@"取消" forState:UIControlStateNormal];
+    }else{
+        verticalScroll.scrollEnabled = YES;
+        smoothView.hidden = YES;
+        [paintButton setTitle:@"画画" forState:UIControlStateNormal];
+    }
 }
 
 @end

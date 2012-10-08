@@ -9,11 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "GPUImage.h"
 
+@class SmoothLineView;
 
 @interface FilterViewController : UIViewController
 {
     GPUImageOutput<GPUImageInput> *filter;
     GPUImagePicture *staticp;
+    UIScrollView *verticalScroll;
+    SmoothLineView *smoothView;
+    UIButton *paintButton;
 }
 
 @property (nonatomic,retain) UIImage *image;
