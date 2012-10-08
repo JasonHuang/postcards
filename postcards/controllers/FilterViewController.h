@@ -13,8 +13,10 @@
 @interface FilterViewController : UIViewController
 {
     GPUImageOutput<GPUImageInput> *filter;
+    GPUImagePicture *staticp;
 }
 
 @property (nonatomic,retain) UIImage *image;
+@property (nonatomic,retain) GPUImageView *gpuImageView;
 
 @end

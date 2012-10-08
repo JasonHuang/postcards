@@ -21,6 +21,7 @@
 
 @implementation FilterViewController
 @synthesize image = _image;
+@synthesize gpuImageView = _gpuImageView;
 
 - (void)loadView
 {
@@ -30,12 +31,17 @@
     UIScrollView *scroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height - 44 - FILTER_HEIGHT)];
     [self.view addSubview: scroll];
     
-    UIImageView *view = [[UIImageView alloc]initWithImage:[self image]];
+    staticp = [[GPUImagePicture alloc] initWithImage:[self image] smoothlyScaleOutput:YES];
     float imageWidth = 320;
     float imageHeight = ([self image].size.height / [self image].size.width) * imageWidth;
-    view.frame = CGRectMake(0, 0, imageWidth, imageHeight);
+    [self setGpuImageView: [[GPUImageView alloc]initWithFrame:CGRectMake(0, 0, imageWidth, imageHeight)]] ;
+    [self setFilter:0];
+    [staticp addTarget:filter];
+    [filter addTarget:[self gpuImageView]];
+    [staticp processImage];
+    
     [scroll setContentSize:CGSizeMake(imageWidth, imageHeight > (frame.size.height - 44) ? imageHeight : frame.size.height - 44)];
-    [scroll addSubview:view];
+    [scroll addSubview:[self gpuImageView]];
     
     UIScrollView *horizonal = [[UIScrollView alloc] initWithFrame:CGRectMake(0, scroll.frame.size.height, frame.size.width, FILTER_HEIGHT)];
     horizonal.backgroundColor = [UIColor grayColor];
@@ -71,7 +77,6 @@
 //    [parentView addSubview:primaryView];、
     for (int i=0; i<10; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(20 + i * 60, 10, 40, 40);
         UIImage *strechableButtonImage = [[self image] resizedImage:CGSizeMake(40, 40) interpolationQuality:1.0];
         
         [self setFilter:i];
@@ -89,7 +94,7 @@
         btn.backgroundColor = [UIColor clearColor];
         btn.tag = 100+i;
         [btn addTarget:self action:@selector(renderImage:) forControlEvents:UIControlEventTouchUpInside];
-        
+        btn.frame = CGRectMake(0, 0, 40, 40);
         [imageView addSubview:btn];
         [parentView addSubview:imageView];
     }
@@ -134,7 +139,10 @@
 
 - (void)renderImage:(UIButton *)sender
 {
-    NSLog(@"button clicked");
+    [self setFilter:sender.tag - 100];
+    [staticp addTarget:filter];
+    [filter addTarget:[self gpuImageView]];
+    [staticp processImage];
 }
 
 @end
