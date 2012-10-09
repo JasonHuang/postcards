@@ -47,7 +47,7 @@
     smoothView = [[SmoothLineView alloc]initWithFrame:CGRectMake(0, 0, [self gpuImageView].frame.size.width, [self gpuImageView].frame.size.height)];
     smoothView.backgroundColor = [UIColor clearColor];
     [smoothView setHidden:YES];
-    [[self gpuImageView]addSubview:smoothView];
+    [verticalScroll addSubview:smoothView];
     
     UIScrollView *horizonal = [[UIScrollView alloc] initWithFrame:CGRectMake(0, verticalScroll.frame.size.height, frame.size.width, FILTER_HEIGHT)];
     horizonal.backgroundColor = [UIColor grayColor];
@@ -61,6 +61,9 @@
     
     [horizonal addSubview:paintButton];
 
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStyleBordered target:self action:@selector(saveDrawing:)];
+    self.navigationItem.rightBarButtonItem = saveButton;
+    [saveButton release];
     
     [self.view addSubview:horizonal];
 }
@@ -159,5 +162,24 @@
         [paintButton setTitle:@"画画" forState:UIControlStateNormal];
     }
 }
+
+- (void)saveDrawing:(UIButton *)sender
+{
+    NSLog(@"saving image");
+    UIGraphicsBeginImageContext(smoothView.bounds.size);
+    CGContextRef Context = UIGraphicsGetCurrentContext();
+    
+    CGContextScaleCTM(Context, 1.0, -1.0);
+    CGContextTranslateCTM(Context, 0, -smoothView.frame.size.height);
+    
+    CGContextDrawImage(Context,
+                       CGRectMake(0, 0, smoothView.frame.size.width, smoothView.frame.size.height),
+                       [self image].CGImage);
+    [smoothView.layer renderInContext:Context];
+    UIImage *bgImg = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    UIImageWriteToSavedPhotosAlbum(bgImg, nil, nil, nil);
+}
+
 
 @end
