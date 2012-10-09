@@ -175,6 +175,10 @@
     CGContextDrawImage(Context,
                        CGRectMake(0, 0, smoothView.frame.size.width, smoothView.frame.size.height),
                        [self image].CGImage);
+    
+    CGContextScaleCTM(Context, 1.0, -1.0);
+    CGContextTranslateCTM(Context, 0, -smoothView.frame.size.height);
+    
     [smoothView.layer renderInContext:Context];
     UIImage *bgImg = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
